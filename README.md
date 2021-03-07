@@ -8,3 +8,8 @@ $ pip install -r requirements.txt
 ## Run locally
 
 $ uvicorn raybamusic.main:app --reload
+
+
+## Run tests
+
+$ python -m pytest
