@@ -1,11 +1,22 @@
-from fastapi.testclient import TestClient
-from raybamusic.main import app
+from graphene.test import Client
+from raybamusic.main import schema
 
 
-client = TestClient(app)
+def test_hello__with_name():
+    client = Client(schema)
+    executed = client.execute('''{ hello(name: "world!") }''')
+    assert executed == {
+        "data": {
+            "hello": "Hello world!"
+        }
+    }
 
 
-def test_read_root():
-    response = client.get("/")
-    assert response.status_code == 200
-    assert response.json() == {"Hello": "World"}
+def test_hello__no_name():
+    client = Client(schema)
+    executed = client.execute('''{ hello }''')
+    assert executed == {
+        "data": {
+            "hello": "Hello stranger"
+        }
+    }
