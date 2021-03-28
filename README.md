@@ -12,4 +12,5 @@ $ uvicorn raybamusic.main:app --reload
 
 ## Run tests
 
+$ pip install pytest
 $ python -m pytest
