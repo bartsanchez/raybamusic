@@ -1,4 +1,6 @@
 fastapi
 uvicorn[standard]
 graphene
+graphene_sqlalchemy
 pydantic
+sqlalchemy
