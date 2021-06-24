@@ -4,3 +4,4 @@ graphene
 graphene_sqlalchemy
 pydantic
 sqlalchemy
+alembic
