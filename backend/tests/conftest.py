@@ -3,7 +3,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from raybamusic.models import Base
 
-test_db_url = 'sqlite://'
+test_db_url = "sqlite://"
 
 
 @pytest.fixture(scope="function")

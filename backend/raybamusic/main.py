@@ -13,7 +13,7 @@ models.Base.metadata.create_all(bind=engine)
 class Song(SQLAlchemyObjectType):
     class Meta:
         model = models.Song
-        interfaces = (graphene.relay.Node, )
+        interfaces = (graphene.relay.Node,)
 
 
 class Query(graphene.ObjectType):
