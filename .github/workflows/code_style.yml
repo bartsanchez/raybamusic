@@ -1,0 +1,29 @@
+name: Code style
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: [3.7, 3.8]
+
+    defaults:
+        run:
+            working-directory: ./backend
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Install black
+        run: pip install black
+
+      - name: Run code formatter
+        run: black . --check
