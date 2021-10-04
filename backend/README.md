@@ -2,12 +2,13 @@
 
 ## Requirements
 
-$ pip install -r requirements.txt
+$ pip install docker-compose
 
 
 ## Run locally
 
-$ uvicorn raybamusic.main:app --reload
+$ docker-compose build
+$ docker-compose up
 
 
 ## Run tests
