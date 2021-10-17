@@ -5,9 +5,9 @@ from raybamusic.main import schema
 
 def test_all_songs__empty(db_session):
     client = Client(schema)
-    query = """{ allSongs {edges {node {name, release} }}}"""
+    query = """{ songs {name, release} }"""
     executed = client.execute(query, context_value={"session": db_session})
-    assert executed == {"data": {"allSongs": {"edges": []}}}
+    assert executed == {"data": {"songs": []}}
 
 
 def test_all_songs__one_song(db_session):
@@ -16,16 +16,10 @@ def test_all_songs__one_song(db_session):
 
     client = Client(schema)
 
-    query = """{ allSongs {edges {node {name, release} }}}"""
+    query = """{ songs {name, release} }"""
     executed = client.execute(query, context_value={"session": db_session})
     assert executed == {
-        "data": {
-            "allSongs": {
-                "edges": [
-                    {"node": {"name": "Let me go", "release": "2021-01-01"}}
-                ]
-            }
-        }
+        "data": {"songs": [{"name": "Let me go", "release": "2021-01-01"}]}
     }
 
 
@@ -36,20 +30,13 @@ def test_all_songs__more_than_one_song(db_session):
 
     client = Client(schema)
 
-    query = """{ allSongs {edges {node {name, release} }}}"""
+    query = """{ songs {name, release} }"""
     executed = client.execute(query, context_value={"session": db_session})
     assert executed == {
         "data": {
-            "allSongs": {
-                "edges": [
-                    {
-                        "node": {
-                            "name": "Alameda's blues",
-                            "release": "2021-01-01",
-                        }
-                    },
-                    {"node": {"name": "Lobo López", "release": "2021-01-01"}},
-                ]
-            }
+            "songs": [
+                {"name": "Alameda's blues", "release": "2021-01-01"},
+                {"name": "Lobo López", "release": "2021-01-01"},
+            ]
         }
     }
